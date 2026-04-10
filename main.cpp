@@ -98,3 +98,21 @@ int main () {
         }
     }
 }
+//
+// Užduotis „Mokinių pažymių sistema“
+//
+// Tikslas:
+//
+// Sukurti C++ programą, kuri leidžia vartotojui:
+//
+//     Įvesti mokinių vardus ir jų pažymius.
+//     Peržiūrėti visų mokinių arba konkretaus mokinio pažymius.
+//     Atnaujinti konkretų pažymį konkrečiam mokiniui.
+//     Pašalinti mokinį iš sąrašo.
+//
+// Reikalavimai:
+//
+//     Naudoti du masyvus: vienmatis masyvas skirtas mokinių vardams saugoti, dvimatis masyvas skirtas pažymiams: eilutės – mokiniai, stulpeliai – pažymiai.
+//     Leisti į masyvą įvesti iki 100 mokinių, kiekvienas iš jų gali turėti iki 10 pažymių.
+//     Naudoti ciklus ir sąlyginius sakinius duomenų valdymui.
+//     Sukurti paprastą meniu, leidžiantį vartotojui pasirinkti veiksmą.
