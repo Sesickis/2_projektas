@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-//#include <iomanip>
 using namespace std;
 
 const int MAX_MOKINIU = 100;
@@ -8,7 +7,6 @@ const int MAX_PAZYMIU = 10;
 
 string vardai[MAX_MOKINIU];
 int pazymiai[MAX_MOKINIU][MAX_PAZYMIU];
-int pazymiuKiekis[MAX_MOKINIU];
 int mokiniuKiekis = 0;
 
 int rastiMokiniPagalVarda(string vardas) {
@@ -42,8 +40,9 @@ void pridetiMokini() {
     }
 
     vardai[mokiniuKiekis] = vardas;
-    pazymiuKiekis[mokiniuKiekis] = kiekisPaz;
-
+    for (int j = 0; j < MAX_PAZYMIU; j++) {
+        pazymiai[mokiniuKiekis][j] = -1;
+    }
     for (int j = 0; j < kiekisPaz; j++) {
         cout << "Iveskite " << j + 1 << "-aji pazymi: ";
         cin >> pazymiai[mokiniuKiekis][j];
@@ -64,12 +63,16 @@ void rodytiVisusMokinius() {
         return;
     }
 
-    cout << "\n--- Visu mokiniu sarasas ---\n";
+    cout << "\n--- Visu mokiniu pazymiai ---\n";
     for (int i = 0; i < mokiniuKiekis; i++) {
-        cout << i + 1 << ". " << vardai[i] << " -> ";
-        for (int j = 0; j < pazymiuKiekis[i]; j++) {
-            cout << pazymiai[i][j] << " ";
+        cout << vardai[i] << " -- ";
+
+        for (int j = 0; j < MAX_PAZYMIU; j++) {
+            if (pazymiai[i][j] != -1) {
+                cout << pazymiai[i][j] << " ";
+            }
         }
+
         cout << endl;
     }
 }
@@ -88,13 +91,15 @@ void rodytiVienaMokini() {
     int indeksas = rastiMokiniPagalVarda(vardas);
 
     if (indeksas == -1) {
-        cout << "Toks mokinys nerastas.\n";
+        cout << "Mokinys nerastas.\n";
         return;
     }
 
-    cout << "Mokinio" << vardai[indeksas] << " pazymiai: ";
-    for (int j = 0; j < pazymiuKiekis[indeksas]; j++) {
-        cout << pazymiai[indeksas][j] << " ";
+    cout << vardai[indeksas] << " -> ";
+    for (int j = 0; j < MAX_PAZYMIU; j++) {
+        if (pazymiai[indeksas][j] != -1) {
+            cout << pazymiai[indeksas][j] << " ";
+        }
     }
     cout << endl;
 }
@@ -113,67 +118,74 @@ void atnaujintiPazymi() {
     int indeksas = rastiMokiniPagalVarda(vardas);
 
     if (indeksas == -1) {
-        cout << "Toks mokinys nerastas.\n";
+        cout << "Mokinys nerastas.\n";
         return;
     }
 
     cout << "Esami pazymiai: ";
-    for (int j = 0; j < pazymiuKiekis[indeksas]; j++) {
-        cout << "(" << j + 1 << ":" << pazymiai[indeksas][j] << ") ";
+    for (int j = 0; j < MAX_PAZYMIU; j++) {
+        if (pazymiai[indeksas][j] != -1) {
+            cout << "(" << j + 1 << ":" << pazymiai[indeksas][j] << ") ";
+        }
     }
     cout << endl;
 
-    int nr, naujasPazymys;
-    cout << "Kuri pazymi norite keisti? Iveskite numeri: ";
+    int nr, naujas;
+    cout << "Kuri pazymi norite keisti? ";
     cin >> nr;
 
-    if (nr < 1 || nr > pazymiuKiekis[indeksas]) {
-        cout << "Neteisingas pazymio numeris.\n";
+    if (nr < 1 || nr > MAX_PAZYMIU || pazymiai[indeksas][nr - 1] == -1) {
+        cout << "Toks pazymys neegzistuoja.\n";
         return;
     }
 
     cout << "Iveskite nauja pazymi: ";
-    cin >> naujasPazymys;
+    cin >> naujas;
 
-    while (naujasPazymys < 1 || naujasPazymys > 10) {
+    while (naujas < 1 || naujas > 10) {
         cout << "Pazymys turi buti nuo 1 iki 10. Bandykite dar karta: ";
-        cin >> naujasPazymys;
+        cin >> naujas;
     }
 
-    pazymiai[indeksas][nr - 1] = naujasPazymys;
-    cout << "Pazymys atnaujintas sekmingai.\n";
+    pazymiai[indeksas][nr - 1] = naujas;
+    cout << "Pazymys atnaujintas.\n";
 }
 
 void pasalintiMokini() {
-    if (mokiniuKiekis == 0) {
-        cout << "Mokiniu sarasas tuscias.\n";
-        return;
-    }
-
-    string vardas;
-    cout << "Iveskite mokinio varda, kuri norite pasalinti: ";
-    cin >> ws;
-    getline(cin, vardas);
-
-    int indeksas = rastiMokiniPagalVarda(vardas);
-
-    if (indeksas == -1) {
-        cout << "Toks mokinys nerastas.\n";
-        return;
-    }
-
-    for (int i = indeksas; i < mokiniuKiekis - 1; i++) {
-        vardai[i] = vardai[i + 1];
-        pazymiuKiekis[i] = pazymiuKiekis[i + 1];
-
-        for (int j = 0; j < MAX_PAZYMIU; j++) {
-            pazymiai[i][j] = pazymiai[i + 1][j];
+        if (mokiniuKiekis == 0) {
+            cout << "Mokiniu sarasas tuscias.\n";
+            return;
         }
-    }
 
-    mokiniuKiekis--;
-    cout << "Mokinys pasalintas sekmingai.\n";
-}
+        string vardas;
+        cout << "Iveskite mokinio varda, kuri norite pasalinti: ";
+        cin >> ws;
+        getline(cin, vardas);
+
+        int indeksas = rastiMokiniPagalVarda(vardas);
+
+        if (indeksas == -1) {
+            cout << "Mokinys nerastas.\n";
+            return;
+        }
+
+        for (int i = indeksas; i < mokiniuKiekis - 1; i++) {
+            vardai[i] = vardai[i + 1];
+
+            for (int j = 0; j < MAX_PAZYMIU; j++) {
+                pazymiai[i][j] = pazymiai[i + 1][j];
+            }
+        }
+
+        mokiniuKiekis--;
+
+        vardai[mokiniuKiekis] = "";
+        for (int j = 0; j < MAX_PAZYMIU; j++) {
+            pazymiai[mokiniuKiekis][j] = -1;
+        }
+
+        cout << "Mokinys pasalintas.\n";
+    }
 
 void rodytiMeniu() {
     cout << "MENIU\n";
