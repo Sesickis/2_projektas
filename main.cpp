@@ -194,8 +194,8 @@ void rodytiMeniu() {
     cout << "3. Rodyti konkretaus mokinio pazymius\n";
     cout << "4. Atnaujinti mokinio pazymi\n";
     cout << "5. Pasalinti mokini\n";
-    cout << "0. Baigti programa\n";
-    cout << "Pasirinkite veiksma(naudokite tik skaicius): ";
+    cout << "0. Iseiti \n";
+    cout << "Pasirinkite veiksma: ";
 }
 
 int main()
@@ -223,7 +223,7 @@ int main()
                     pasalintiMokini();
                     break;
                 case 0:
-                    cout << "Programa baigta.\n";
+                    cout << "Iseita. Geros dienos.\n";
                     break;
                 default:
                 cout << "Neteisingas pasirinkimas. Bandykite dar karta.\n";
