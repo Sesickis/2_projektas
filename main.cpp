@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
+//#include <iomanip>
 using namespace std;
 
 const int MAX_MOKINIU = 100;
@@ -27,23 +27,23 @@ void pridetiMokini() {
     }
 
     string vardas;
-    int kiek;
+    int kiekisPaz;
 
-    cout << "Iveskite mokinio varda: ";
+    cout << "Iveskite mokinio varda (be tarpo): ";
     cin >> vardas;
 
     cout << "Kiek pazymiu turi mokinys? (1-10): ";
-    cin >> kiek;
+    cin >> kiekisPaz;
 
-    while (kiek < 1 || kiek > MAX_PAZYMIU) {
+    while (kiekisPaz < 1 || kiekisPaz > MAX_PAZYMIU) {
         cout << "Neteisingas kiekis. Iveskite nuo 1 iki 10: ";
-        cin >> kiek;
+        cin >> kiekisPaz;
     }
 
     vardai[mokiniuKiekis] = vardas;
-    pazymiuKiekis[mokiniuKiekis] = kiek;
+    pazymiuKiekis[mokiniuKiekis] = kiekisPaz;
 
-    for (int j = 0; j < kiek; j++) {
+    for (int j = 0; j < kiekisPaz; j++) {
         cout << "Iveskite " << j + 1 << "-aji pazymi: ";
         cin >> pazymiai[mokiniuKiekis][j];
 
@@ -90,7 +90,7 @@ void rodytiVienaMokini() {
         return;
     }
 
-    cout << vardai[indeksas] << " pazymiai: ";
+    cout << "Mokinio" << vardai[indeksas] << " pazymiai: ";
     for (int j = 0; j < pazymiuKiekis[indeksas]; j++) {
         cout << pazymiai[indeksas][j] << " ";
     }
@@ -172,14 +172,14 @@ void pasalintiMokini() {
 }
 
 void rodytiMeniu() {
-    cout << "\n===== MOKINIU PAZYMIU SISTEMA =====\n";
+    cout << "MENIU\n";
     cout << "1. Prideti mokini\n";
     cout << "2. Rodyti visu mokiniu pazymius\n";
     cout << "3. Rodyti konkretaus mokinio pazymius\n";
     cout << "4. Atnaujinti mokinio pazymi\n";
     cout << "5. Pasalinti mokini\n";
     cout << "0. Baigti programa\n";
-    cout << "Pasirinkite veiksma: ";
+    cout << "Pasirinkite veiksma(naudokite tik skaicius): ";
 }
 
 int main() {
