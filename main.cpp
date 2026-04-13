@@ -198,36 +198,38 @@ void rodytiMeniu() {
     cout << "Pasirinkite veiksma(naudokite tik skaicius): ";
 }
 
-int main() {
+int main()
+{
     int pasirinkimas;
 
     do {
         rodytiMeniu();
-        cin >> pasirinkimas;
-
-        switch (pasirinkimas) {
-            case 1:
-                pridetiMokini();
-                break;
-            case 2:
-                rodytiVisusMokinius();
-                break;
-            case 3:
-                rodytiVienaMokini();
-                break;
-            case 4:
-                atnaujintiPazymi();
-                break;
-            case 5:
-                pasalintiMokini();
-                break;
-            case 0:
-                cout << "Programa baigta.\n";
-                break;
-            default:
+            cin >> pasirinkimas;
+                switch (pasirinkimas)
+                {
+                case 1:
+                    pridetiMokini();
+                    break;
+                case 2:
+                    rodytiVisusMokinius();
+                    break;
+                case 3:
+                    rodytiVienaMokini();
+                    break;
+                case 4:
+                    atnaujintiPazymi();
+                    break;
+                case 5:
+                    pasalintiMokini();
+                    break;
+                case 0:
+                    cout << "Programa baigta.\n";
+                    break;
+                default:
                 cout << "Neteisingas pasirinkimas. Bandykite dar karta.\n";
-        }
-    } while (pasirinkimas != 0);
+                }
+
+        } while (pasirinkimas != 0);
 
     return 0;
 }
@@ -249,3 +251,29 @@ int main() {
 //     Leisti į masyvą įvesti iki 100 mokinių, kiekvienas iš jų gali turėti iki 10 pažymių.
 //     Naudoti ciklus ir sąlyginius sakinius duomenų valdymui.
 //     Sukurti paprastą meniu, leidžiantį vartotojui pasirinkti veiksmą.
+
+// #include <limits>
+//
+// int skaitytiSkaiciu(int nuo, int iki) {
+//     int x;
+//
+//     while (true) {
+//         cin >> x;
+//
+//         if (cin.fail()) {
+//             cout << "Klaida: iveskite skaiciu: ";
+//             cin.clear();
+//             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//             continue;
+//         }
+//
+//         if (x < nuo || x > iki) {
+//             cout << "Klaida: iveskite skaiciu nuo " << nuo << " iki " << iki << ": ";
+//             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//             continue;
+//         }
+//
+//         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//         return x;
+//     }
+// }
