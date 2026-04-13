@@ -29,8 +29,9 @@ void pridetiMokini() {
     string vardas;
     int kiekisPaz;
 
-    cout << "Iveskite mokinio varda (be tarpo): ";
-    cin >> vardas;
+    cout << "Iveskite mokinio varda: ";
+    cin >> ws;
+    getline(cin, vardas);
 
     cout << "Kiek pazymiu turi mokinys? (1-10): ";
     cin >> kiekisPaz;
@@ -81,7 +82,8 @@ void rodytiVienaMokini() {
 
     string vardas;
     cout << "Iveskite mokinio varda: ";
-    cin >> vardas;
+    cin >> ws;
+    getline(cin, vardas);
 
     int indeksas = rastiMokiniPagalVarda(vardas);
 
@@ -105,7 +107,8 @@ void atnaujintiPazymi() {
 
     string vardas;
     cout << "Iveskite mokinio varda: ";
-    cin >> vardas;
+    cin >> ws;
+    getline(cin, vardas);
 
     int indeksas = rastiMokiniPagalVarda(vardas);
 
@@ -149,7 +152,8 @@ void pasalintiMokini() {
 
     string vardas;
     cout << "Iveskite mokinio varda, kuri norite pasalinti: ";
-    cin >> vardas;
+    cin >> ws;
+    getline(cin, vardas);
 
     int indeksas = rastiMokiniPagalVarda(vardas);
 
