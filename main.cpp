@@ -188,7 +188,7 @@ void pasalintiMokini() {
     }
 
 void rodytiMeniu() {
-    cout << "MENIU\n";
+    cout << "\n ***MENIU***\n";
     cout << "1. Prideti mokini\n";
     cout << "2. Rodyti visu mokiniu pazymius\n";
     cout << "3. Rodyti konkretaus mokinio pazymius\n";
